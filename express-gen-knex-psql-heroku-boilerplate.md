@@ -3,12 +3,50 @@
 # express and knex
 
 $ express --hbs --git
-$ npm install --save pg knex
+$ npm install *installs boilerplate dependencies*
+$ npm install --save pg knex method-override
+$ npm install --save-dev nodemon  
+  * add nodemon start script in package.json
+$ git init
 $ touch knexfile.js  
-  * setup knex config
+  * setup knexfile.js config
+  ```
+  const path = require('path');
+
+  module.exports = {
+    development: {
+      client: 'pg',
+      connection: 'postgres://localhost/cookies_crud',
+      migrations: {
+        directory: path.join(__dirname, 'db', 'migrations')
+      },
+      seeds: {
+        directory: path.join(__dirname, 'db', 'seeds')
+      }
+    },
+    production: {
+      client: 'pg',
+      connection: process.env.DATABASE_URL,
+      migrations: {
+        directory: path.join(__dirname, 'db', 'migrations')
+      },
+      seeds: {
+        directory: path.join(__dirname, 'db', 'seeds')
+      }
+    }
+  };
+  ```
 $ mkdir db
 $ touch db/knex.js
-  * module.exports = knex
+  * setup knex.js config
+  ```
+  const env = process.env.NODE_ENV || 'development';
+  const config = require('../knexfile.js')[env];
+  const knex = require('knex')(config);
+
+
+  module.exports = knex;
+  ```
   * add knex start script in package.json
 $ createdb [database name]
 $ psql [database name]
