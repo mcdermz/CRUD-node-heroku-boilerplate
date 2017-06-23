@@ -97,6 +97,34 @@
 
 `$ npm run knex seed:make 1_[table name]`
   * Edit the seed file to insert data, make sure to delete the data before inserting data
+  ```
+  // EXAMPLE SEED
+  
+  exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+    return knex('events').del()
+      .then(function () {
+        return knex.raw("SET datestyle = ymd;")
+      }).then(function () {
+        // Inserts seed entries
+        return knex('events').insert([
+          {
+            id: 1,
+            title: 'Rock concert',
+            description: 'Rock n roll all night and party every day!!!!!',
+            over_21: true,
+            start_time: '2018-04-22 18:00:00',
+            end_time: '2018-04-22 20:00:00',
+            venue_id: 1
+          },
+        ]);
+      }).then(() => {
+        return knex.raw(
+          "SELECT setval('events_id_seq', (SELECT MAX(id) FROM events));"
+        )
+      });
+  };
+  ```
 
 `$ npm run knex seed:run`
   * Seeds the table with your data
