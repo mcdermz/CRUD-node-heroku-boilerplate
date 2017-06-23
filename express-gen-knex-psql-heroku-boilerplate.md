@@ -72,6 +72,25 @@
 
 `$ npm run knex migrate:make [table name]`
   * Edit migration file to create table
+  ```
+  // EXAMPLE TABLE
+  'use strict';
+
+  exports.up = function(knex, Promise) {
+    return knex.schema.createTable('events', (table) => {
+      table.increments();   // creates incrementing ID
+      table.string('title').notNullable();
+      table.text('description').defaultTo('');
+      table.dateTime('start_time').notNullable();
+      table.dateTime('end_time').notNullable();
+      table.integer('venue_id');
+    })
+  };
+
+  exports.down = function(knex, Promise) {
+    return knex.schema.dropTable('events')
+  };
+  ```
 
 `$ npm run knex migrate:latest`
   * Creates the table in the database
