@@ -22,7 +22,7 @@
   module.exports = {
     development: {
       client: 'pg',
-      connection: 'postgres://localhost/cookies_crud',
+      connection: 'postgres://localhost/[ DATABASE NAME ]',
       migrations: {
         directory: path.join(__dirname, 'db', 'migrations')
       },
@@ -99,7 +99,7 @@
   * Edit the seed file to insert data, make sure to delete the data before inserting data
   ```
   // EXAMPLE SEED
-  
+
   exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
     return knex('events').del()
