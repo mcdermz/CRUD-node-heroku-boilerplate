@@ -42,7 +42,6 @@
     }
   };
   ```
-
 `$ mkdir db`
 
 `$ touch db/knex.js`
@@ -81,22 +80,27 @@
 # setting routes
 
 * set route with a method and attach a named function
+
 * code function to return a simple message
   - test
+
 * build html template to render and have function render that template
   - test
+
 * hard-code variables in function to pass through to template
   - test
+
 * refactor function to include logic and dynamic variables
   - test
 
 
 # HEROKU deployment
 
-* add a production key to `knexfile.js`
+* Add a production key to `knexfile.js`
   - set connection: `process.env.DATABASE_URL`
   - everything else should be the same as development
-* set a ternary in `db/knex.js`
+
+* Set a ternary in `db/knex.js`
   - `const env = process.env.NODE_ENV || 'development';`
 
 `$ heroku create [app name]`
