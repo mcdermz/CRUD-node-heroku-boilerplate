@@ -42,11 +42,16 @@
     }
   };
   ```
-  
+
 `$ mkdir db`
 
 `$ touch db/knex.js`
   * Add knex start script in package.json
+  ```
+  "scripts":
+      "knex": "./node_modules/.bin/knex"
+  ```
+
   * Setup knex.js config
 
   ```
