@@ -2,13 +2,19 @@
 
 # express and knex
 
-$ express --hbs --git
-$ npm install *installs boilerplate dependencies*
-$ npm install --save pg knex method-override
-$ npm install --save-dev nodemon  
-  * add nodemon start script in package.json
-$ git init
-$ touch knexfile.js  
+`$ express --hbs --git`
+
+`$ npm install`
+  * installs boilerplate dependencies
+
+`$ npm install --save pg knex method-override`
+
+`$ npm install --save-dev nodemon `
+  * adds nodemon start script in package.json
+
+`$ git init`
+
+`$ touch knexfile.js `
   * setup knexfile.js config
   ```
   const path = require('path');
@@ -36,33 +42,40 @@ $ touch knexfile.js
     }
   };
   ```
-$ mkdir db
-$ touch db/knex.js
+
+`$ mkdir db`
+
+`$ touch db/knex.js`
+  * add knex start script in package.json
   * setup knex.js config
+
   ```
   const env = process.env.NODE_ENV || 'development';
   const config = require('../knexfile.js')[env];
   const knex = require('knex')(config);
 
-
   module.exports = knex;
   ```
-  * add knex start script in package.json
-$ createdb [database name]
-$ psql [database name]
+
+`$ createdb [database name]`
+
+`$ psql [database name]`
   * in new shell tab to confirm database creation
 
 
 # knex migrations
 
-$ npm run knex migrate:make [table name]
+`$ npm run knex migrate:make [table name]`
   * edit migration file to create table
-$ npm run knex migrate:latest
-  *this creates the table in the database*
-$ npm run knex seed:make 1_[table name]
+
+`$ npm run knex migrate:latest`
+  * creates the table in the database
+
+`$ npm run knex seed:make 1_[table name]`
   * edit the seed file to insert data, make sure to delete the data before inserting data
-$ npm run knex seed:run
-  *seeds the table with your data*
+
+`$ npm run knex seed:run`
+  * seeds the table with your data
 
 
 # setting routes
@@ -86,16 +99,23 @@ $ npm run knex seed:run
 * set a ternary in `db/knex.js`
   - `const env = process.env.NODE_ENV || 'development';`
 
-$ heroku create [app name]
-$ heroku apps:rename [new name] *to rename:*
-$ git commit -m 'prep for deployment' *check git status and commit any changes*
-$ git push heroku master
+`$ heroku create [app name]`
+  * To rename: `$ heroku apps:rename [new name] `
 
-$ heroku open
-$ heroku logs *for finding errors*
-$ heroku config
-$ heroku addons:create heroku-postgresql
-  *creates a postgres server on heroku*
-$ heroku run bash
-  *opens up a console on heroku server for your app*
-* run migrations and seed your db as you would locally
+`$ git commit -m 'prep for deployment'`
+
+`$ git push heroku master`
+
+`$ heroku open` *opens your heroku-deployed app*
+
+`$ heroku logs` *for finding errors*
+
+`$ heroku config`
+  * use `heroku config:set VAR_NAME=value` to add environment variables to deployed site
+
+`$ heroku addons:create heroku-postgresql`
+  * creates a postgres server on heroku
+
+`$ heroku run bash`
+  * opens up a console on heroku server for your app  
+  * run migrations and seed your db as you would locally
