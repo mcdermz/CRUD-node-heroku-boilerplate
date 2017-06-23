@@ -42,6 +42,7 @@
     }
   };
   ```
+  
 `$ mkdir db`
 
 `$ touch db/knex.js`
